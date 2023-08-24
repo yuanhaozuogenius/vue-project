@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+  <script type="text/javascript" src="../project_1/js/vue.js"></script>
+  <script> Vue.config.productionTip = false </script>
+  <style>
+    * {
+      margin-top: 20px;
+    }
+
+    .demo1 {
+      height: 50px;
+      background-color: greenyellow;
+      font-style: italic;
+    }
+
+    .box {
+      height: 150px;
+      background-color: orange;
+    }
+
+    .list {
+      width: 200px;
+      height: 200px;
+      background-color: azure;
+      overflow: auto;
+    / / 高度溢出时自动增加一个滚动条
+    }
+
+    li {
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+<!-- 准备好一个容器-->
+<div id="root">
+  <h1>Test</h1>
+  <hr/>
+  <div class="box">
+    <h2>Test for {{name}}</h2>
+    <a class="demo1" :href="school.url.toUpperCase()" v-bind:x="hello"> {{school.name}}</a>
+    <br>
+    <a href="genius" @click.prevent="showInfo">点我显示for循环sample</a>
+    <button @click="showImage">点我显示for循环sample</button>
+  </div>
+</div>
+</body>
+<script type="text/javascript">
+
+  //创建实例
+  const vm = new Vue({
+    el: '#root',
+    data: {
+      name: 'Barry',
+      address: 'Bei Jing',
+      hello: '你好你好',
+      school: {
+        url: 'https://www.baidu.com',
+        name: 'Link to 百度'
+      }
+    },
+    methods: {
+      showImage(e) {
+        console.log("value of this here like:", "\n", this, e)
+        f()
+      },
+      showInfo(event) {
+        alert("事件处理test")
+        console.log(event.target.innerText)
+      }
+    }
+  })
+  // test to print * regularly
+  function f() {
+    for (let j = 0; j < 5; j++) {
+      for (let i = 0; i < 5 - j; i++) {
+        document.write("*&nbsp;&nbsp;&nbsp;")
+
+      }
+      document.write("<br/>")
+    }
+  }
+
+</script>
+
+</html>
