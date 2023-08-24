@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>事件处理</title>
+  <script type="text/javascript" src="../project_1/js/vue.js"></script>
+  <style>
+    *{
+      margin-top: 20px;
+    }
+    .demo1{
+      height: 50px;
+      background-color: darkblue;
+    }
+    .box{
+      height: 50px;
+      background-color: orange;
+    }
+    .list{
+      width: 200px;
+      height: 200px;
+      background-color: azure;
+      overflow: auto;//高度溢出时自动增加一个滚动条
+    }
+    li{
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 准备好一个容器-->
+  <div id="root">
+   <h2>Welcome to {{name}}</h2>
+<!--    vue中事件修饰符click.prevent 阻止默认事件,stop阻止事件冒泡,once事件只触发一次-->
+    <a href="http://www.baidu.com" @click.prevent="showInfo">点我提示信息</a>
+<!--    事件修饰符stop 阻止事件冒泡(click事件只触发一次)-->
+    <div class="demo1" @click="showInfo">
+      <button @click.stop="showInfo"> 点我提示信息</button>
+    </div>
+    <!--    事件修饰符once 事件只触发一次(click事件只触发一次,后续不再触发)-->
+    <div class="box" @click="showMsg(111)">
+    <button @click.once="showInfo"> 点我提示信息</button>
+    </div>
+    //scroll给滚动条增加滚动事件 wheel 给鼠标滚轮增加滚动事件
+    <ul @scroll="demo" class="list">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+
+
+    <button v-on:click="showInfo1">点我提示信息1(不传参)</button><br>
+<!--    v-on:的简写形式：@-->
+    <button @click="showInfo2($event,666)">点我提示信息2(传参)</button>
+  </div>
+</body>
+  <script type="text/javascript">
+    Vue.config.productionTip = false
+
+    //创建实例
+    new Vue({
+      el:'#root',
+      data:{
+        name: 'China',
+      },
+      methods:{
+        showInfo1(event){
+          alert("Hello")
+          console.log(event.target.innerText)
+        },
+        showInfo2(event,number){
+          alert(number)
+          console.log(number,event)
+        },
+        showInfo(e){
+          alert("事件处理test")
+        },
+        showMsg(msg){
+          console.log(msg)
+        },
+        demo(){
+          console.log("@@@@@@")
+        },
+      }
+    })
+  </script>
+
+</html>

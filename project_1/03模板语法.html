@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>模板语法</title>
+  <script type="text/javascript" src="../project_1/js/vue.js"></script>
+  <script> Vue.config.productionTip=false </script>
+</head>
+<body>
+  <!-- 准备好一个容器-->
+  <div id="root">
+    单向数据绑定：<input type="text" v-bind:value="name"><br/ >
+<!--    v-model只能应用在表单类(输入类)元素中，对其中的value属性进行绑定-->
+    双向数据绑定：<input type="text" v-model:value="name">
+  </div>
+</body>
+  <script type="text/javascript">
+
+    //创建实例
+    new Vue({
+      el:'#root',
+      data:{
+        name: 'Barry',
+      }
+    })
+  </script>
+
+</html>

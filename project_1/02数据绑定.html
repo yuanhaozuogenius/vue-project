@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>模板语法</title>
+  <script type="text/javascript" src="../project_1/js/vue.js"></script>
+  <script> Vue.config.productionTip=false </script>
+</head>
+<body>
+  <!-- 准备好一个容器-->
+  <div id="root">
+<!--    管理标签体内的值-->
+    <h1>插值语法</h1>
+    <h2>Hello {{ name.toUpperCase() }} </h2>
+    <h4>{{ address }}</h4>
+    <h2>{{ Date.now() }}</h2>
+    <hr/>
+<!--    管理标签体的属性等-->
+    <h1>指令语法</h1>
+    <!--v-bind 可以简写为 : -->
+    <a v-bind:href="school.url" v-bind:x="hello"> {{school.name}}</a>
+    <hr/>
+    <a :href="school.url.toUpperCase()" v-bind:x="hello"> {{school.name}}</a>
+  </div>
+</body>
+  <script type="text/javascript">
+
+    //创建实例
+    new Vue({
+      el:'#root',
+      data:{
+        name: 'Barry',
+        address:'Bei Jing',
+        hello:'你好你好',
+        school:{
+          url:'https://www.baidu.com',
+          name:'Link to 百度'
+        }
+      }
+    })
+  </script>
+
+</html>

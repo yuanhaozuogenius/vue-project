@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Object.defineproperty</title>
+  <script type="text/javascript" src="../project_1/js/vue.js"></script>
+  <script> Vue.config.productionTip=false </script>
+</head>
+<body>
+  <script type="text/javascript">
+    Vue.config.productionTip =false
+    let number = 30
+    let person = {
+      name: 'barry',
+      sex:'male',
+    }
+    // 表示不可枚举的属性
+    Object.defineProperty(person,'age',{
+      // value:18,
+      // enumerable:true, //控制属性是否可以枚举，默认false
+      // writable:true, //控制属性是否可以被修改，默认false
+      // configurable:true,//控制属性是否可以被删除，默认false
+      get(){
+        console.log("读取age属性")
+        return number
+      },
+      set(value){
+        console.log("修改age属性，且值是",value)
+        number = value
+      }
+    })
+    console.log(person)
+    //枚举 person
+    console.log(Object.keys(person))
+    //枚举 person
+    for (let key in person) {
+      console.log('@',person[key])
+    }
+
+    // 数据代理：通过一个对象代理另一个对象中属性的操作(读/写)
+    obj1 = {x:100}
+    obj2 = {y:200}
+    Object.defineProperty(obj2,'x',{
+      get(){
+        return obj1.x
+      },
+      //通过ojb2对象可以操作ojb1的属性x，此为数据代理
+      set(value){
+        obj1.x = value
+      }
+    })
+  </script>
+</body>
+</html>
